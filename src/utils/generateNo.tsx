@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { View, Text, Pressable, StyleSheet, TouchableWithoutFeedback, Alert } from "react-native";
-import LottieView from 'lottie-react-native';
+import React, { useState } from "react";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 
 interface RandomNumberGeneratorProps {
     min: number;
@@ -34,7 +33,6 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
         const allAreSame = new Set(randomNumbers);
         if (allAreSame.size === 1) {
             win(true)
-            Alert.alert("Win");
         }
     };
     const roll = () => {
@@ -50,37 +48,56 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
     }
 
     return (
-        <View style={[{ justifyContent: 'center', flex: 1 }]}>
-            <Pressable onPress={generateRandomNumber} style={[{ justifyContent: 'center', flexDirection: 'row' }]}>
-                <Text style={{ backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 10 }}>Generate boxs</Text>
+        <View style={[generateNoSreen.mainCont]}>
+            <Pressable onPress={generateRandomNumber} style={[generateNoSreen.rollCont]}>
+                <Text style={generateNoSreen.generateBtn}>Generate boxs</Text>
             </Pressable>
-            <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, flexWrap: 'wrap', gap: 10, alignContent: 'center' }}>
+            <View style={generateNoSreen.boxCont}>
                 {randomNumbers.map((number, index) => (
-                    <Pressable style={{ width: 50, justifyContent: 'center', alignContent: 'center', flexDirection: 'row' }}
+                    <Pressable style={generateNoSreen.boxInCont}
                         onPress={() => fix(index)}
                         key={index}
                     >
-                        <Text key={index} style={[generateNoSreen.box, { width: '100%', backgroundColor: selected.includes(index) ? 'red' : 'transparent' }]}>{number}</Text>
+                        <Text key={index} style={[generateNoSreen.boxTxt, {  backgroundColor: selected.includes(index) ? 'red' : 'transparent' , color: selected.includes(index) ? 'white' : 'black',}]}>{number}</Text>
                     </Pressable>
                 ))}
             </View>
             {
                 randomNumbers.length !== 0 &&
-                <Pressable onPress={() => roll()} style={[{ justifyContent: 'center', flexDirection: 'row' }]}>
-                    <Text style={{ backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 10 }}>Roll</Text>
+                <Pressable onPress={() => roll()} style={[generateNoSreen.rollCont]}>
+                    <Text style={generateNoSreen.rollBtn}>Roll</Text>
                 </Pressable>
             }
-            
         </View>
-        
     );
 }
 
 const generateNoSreen = StyleSheet.create({
-    box: {
+    mainCont:{
+        justifyContent: 'center', flex: 1 
+    },
+    boxTxt: {
         borderWidth: 1,
         borderRadius: 10,
-        padding: 10
+        padding: 10,
+        width: '100%',
+        textAlign:'center'
     },
+    boxCont:{
+        flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, flexWrap: 'wrap', gap: 10, alignContent: 'center'
+    },
+    boxInCont:{
+        width: 50, justifyContent: 'center', alignContent: 'center', flexDirection: 'row' 
+    },
+    generateBtn:{
+        backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 10
+    },
+    rollBtn:{
+        backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 10 
+    },
+    rollCont:{
+        justifyContent: 'center', flexDirection: 'row' 
+    }
+
 })
 

@@ -17,14 +17,15 @@ import {
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { MainScreen } from './src/screen/main';
-import LottieView from 'lottie-react-native';
+
+import SplashScreen from 'react-native-splash-screen'
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-
+  setTimeout(()=>SplashScreen.hide(),1000)
   return (
     <SafeAreaView style={[backgroundStyle]}>
       <StatusBar
