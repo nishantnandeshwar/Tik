@@ -1,18 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   useColorScheme,
-  View
+  View,
+  Dimensions,
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -26,19 +19,23 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   setTimeout(()=>SplashScreen.hide(),1000)
+  // const scrheight = Dimensions.get('window').height;
   return (
-    <SafeAreaView style={[backgroundStyle]}>
+    <SafeAreaView style={{flex:1}}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={[backgroundStyle]}>
+        style={[backgroundStyle]}
+        >
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+            // height:scrheight-24
+          }}
+          >
           <MainScreen />
         </View>
       </ScrollView>

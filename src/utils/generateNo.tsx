@@ -8,7 +8,7 @@ interface RandomNumberGeneratorProps {
     win: any
 }
 
-export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, min, maxnumber,win }) => {
+export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, min, maxnumber, win }) => {
     const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
     const [selected, setSelected] = useState<number[]>([])
 
@@ -20,7 +20,7 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
         win(false)
     };
 
-    
+
     const fix = (index: number) => {
         setSelected((prevSelected: number[]) => {
             if (prevSelected.includes(index)) {
@@ -33,6 +33,7 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
         const allAreSame = new Set(randomNumbers);
         if (allAreSame.size === 1) {
             win(true)
+            setSelected([])
         }
     };
     const roll = () => {
@@ -58,7 +59,7 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
                         onPress={() => fix(index)}
                         key={index}
                     >
-                        <Text key={index} style={[generateNoSreen.boxTxt, {  backgroundColor: selected.includes(index) ? 'red' : 'transparent' , color: selected.includes(index) ? 'white' : 'black',}]}>{number}</Text>
+                        <Text key={index} style={[generateNoSreen.boxTxt, { backgroundColor: selected.includes(index) ? 'red' : 'transparent', color: selected.includes(index) ? 'white' : 'black', }]}>{number}</Text>
                     </Pressable>
                 ))}
             </View>
@@ -73,30 +74,30 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
 }
 
 const generateNoSreen = StyleSheet.create({
-    mainCont:{
-        justifyContent: 'center', flex: 1 
+    mainCont: {
+        justifyContent: 'center', flex: 1
     },
     boxTxt: {
         borderWidth: 1,
         borderRadius: 10,
         padding: 10,
         width: '100%',
-        textAlign:'center'
+        textAlign: 'center'
     },
-    boxCont:{
+    boxCont: {
         flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, flexWrap: 'wrap', gap: 10, alignContent: 'center'
     },
-    boxInCont:{
-        width: 50, justifyContent: 'center', alignContent: 'center', flexDirection: 'row' 
+    boxInCont: {
+        width: 50, justifyContent: 'center', alignContent: 'center', flexDirection: 'row'
     },
-    generateBtn:{
+    generateBtn: {
         backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 10
     },
-    rollBtn:{
-        backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 10 
+    rollBtn: {
+        backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 10
     },
-    rollCont:{
-        justifyContent: 'center', flexDirection: 'row' 
+    rollCont: {
+        justifyContent: 'center', flexDirection: 'row'
     }
 
 })
