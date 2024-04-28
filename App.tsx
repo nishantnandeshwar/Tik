@@ -1,46 +1,49 @@
 import React from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   useColorScheme,
-  View,
-  Dimensions,
+  TextInput,Text,
+  View, ScrollView,
+  StyleSheet,
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import SplashScreen from 'react-native-splash-screen';
 import { MainScreen } from './src/screen/main';
 
-import SplashScreen from 'react-native-splash-screen'
-
-function App(): React.JSX.Element {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-  setTimeout(()=>SplashScreen.hide(),1000)
-  // const scrheight = Dimensions.get('window').height;
+  setTimeout(() => SplashScreen.hide(), 1000);
+
   return (
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: isDarkMode ? Colors.black : Colors.white,
+      }}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        backgroundColor={isDarkMode ? Colors.black : Colors.white}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={[backgroundStyle]}
-        >
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            // height:scrheight-24
-          }}
-          >
+      <View style={[styles.container]}>
+        <ScrollView>
           <MainScreen />
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    padding: 10,
+    borderRadius: 5,
+    flex: 1
+  }
+});
 
 export default App;

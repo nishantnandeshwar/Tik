@@ -1,7 +1,5 @@
-// main.jsx
-
-import React, { useState, useRef, useEffect } from "react";
-import { View, Text, TextInput, StyleSheet, Alert ,Dimensions} from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, StyleSheet, Alert, Dimensions,useColorScheme } from "react-native";
 import { GenerateRandomNo } from "../utils/generateNo";
 import LottieView from 'lottie-react-native';
 
@@ -19,20 +17,22 @@ export const MainScreen = () => {
             }
         }
     };
+    const isDarkMode = useColorScheme() === 'dark';
     const scrheight = Dimensions.get('window').height;
     return (
-        <View style={{ height:'100%'}}>
+        <View style={{ height: '100%' }}>
             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={[generateNoSreen.textStyl]}>
+                <Text style={[generateNoSreen.textStyl, { color: isDarkMode ? 'white' : 'black' }]}>
                     Please enter number
                 </Text>
                 <TextInput
-                    style={generateNoSreen.boxStyl}
+                    style={[generateNoSreen.boxStyl, { borderColor: isDarkMode ? 'white' : 'black' }]}
                     onChangeText={setNoOfBox}
                     value={noOfBox}
                     keyboardType='numeric'
                     inputMode='numeric'
                     placeholder={'ex.10'}
+                    placeholderTextColor={isDarkMode ? 'white' : 'black'}
                 />
             </View>
             <View>
@@ -71,14 +71,14 @@ const generateNoSreen = StyleSheet.create({
         padding: 10,
         borderWidth: 1,
         margin: 10,
-        marginTop:3,
+        marginTop: 3,
         borderRadius: 10,
         width: '50%',
         textAlign: 'center'
     },
-    textStyl:{
-        fontSize:20,
-        fontWeight:'bold',
-        color:'black'
+    textStyl: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black'
     }
 });
