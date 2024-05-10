@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Pressable, StyleSheet, ScrollView, useColorScheme, Alert } from "react-native";
+import { View, Text, Pressable, StyleSheet, ScrollView, useColorScheme, Alert, ToastAndroid } from "react-native";
 
 interface RandomNumberGeneratorProps {
     min: number;
@@ -20,11 +20,30 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
             win(false)
         }
         else {
-            Alert.alert("Enter greater than 1")
+            showToastWithGravityAndOffset()
+            // Alert.alert("Enter greater than 1")
             setRandomNumbers([])
+            // showToastWithGravity()
         }
     };
 
+    const showToastWithGravity = () => {
+        ToastAndroid.showWithGravity(
+          'Enter greater than 1',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+      };
+    
+      const showToastWithGravityAndOffset = () => {
+        ToastAndroid.showWithGravityAndOffset(
+          'Enter greater than 1',
+          ToastAndroid.LONG,
+          ToastAndroid.BOTTOM,
+          25,
+          50,
+        );
+      };
 
     const fix = (index: number) => {
         setSelected((prevSelected: number[]) => {
