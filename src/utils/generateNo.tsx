@@ -12,6 +12,7 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
     const [selected, setSelected] = useState<number[]>([])
 
     const isDarkMode = useColorScheme() === 'dark';
+    useEffect(() => { generateRandomNumber() }, [maxnumber])
     const generateRandomNumber = () => {
         if (maxnumber > 1) {
             const newNumbers = Array.from({ length: maxnumber }, () => Math.floor(Math.random() * (max - min + 1)) + min);
@@ -21,29 +22,19 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
         }
         else {
             showToastWithGravityAndOffset()
-            // Alert.alert("Enter greater than 1")
             setRandomNumbers([])
-            // showToastWithGravity()
         }
     };
 
-    const showToastWithGravity = () => {
-        ToastAndroid.showWithGravity(
-          'Enter greater than 1',
-          ToastAndroid.SHORT,
-          ToastAndroid.CENTER,
-        );
-      };
-    
-      const showToastWithGravityAndOffset = () => {
+    const showToastWithGravityAndOffset = () => {
         ToastAndroid.showWithGravityAndOffset(
-          'Enter greater than 1',
-          ToastAndroid.LONG,
-          ToastAndroid.BOTTOM,
-          25,
-          50,
+            'Enter greater than 1',
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM,
+            25,
+            50,
         );
-      };
+    };
 
     const fix = (index: number) => {
         setSelected((prevSelected: number[]) => {
@@ -75,11 +66,6 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
 
     return (
         <View>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Pressable onPress={generateRandomNumber} style={[generateNoSreen.rollCont]}>
-                    <Text style={generateNoSreen.generateBtn}>Generate boxs</Text>
-                </Pressable>
-            </View>
             <View style={generateNoSreen.boxCont}>
                 {randomNumbers?.map((number, index) => (
                     <Pressable style={generateNoSreen.boxInCont}
