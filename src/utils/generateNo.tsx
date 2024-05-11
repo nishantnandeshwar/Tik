@@ -65,20 +65,20 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
     }
 
     return (
-        <View>
-            <View style={generateNoSreen.boxCont}>
+        <ScrollView>
+            <View className="flex-row	flex-wrap content-center justify-center gap-1 p-1 m-1">
                 {randomNumbers?.map((number, index) => (
-                    <Pressable style={generateNoSreen.boxInCont}
+                    <Pressable className="w-12"
                         onPress={() => fix(index)}
                         key={index}
                     >
                         <Text key={index}
-                            style={[generateNoSreen.boxTxt,
-                            {
-                                backgroundColor: selected.includes(index) ? 'green' : 'transparent',
-                                color: isDarkMode ? selected.includes(index) ? 'white' : 'white' : selected.includes(index) ? 'white' : 'black',
-                                borderColor: isDarkMode ? 'white' : 'black'
-                            }]}>
+                            className={`border-2 rounded-md text-center w-full p-2 
+                            ${selected.includes(index) ? 'bg-green-700' : 'bg-transparent'}	
+                            ${isDarkMode ? selected.includes(index) ? "text-white" : 'text-white' : selected.includes(index) ? 'text-white' : 'text-black'}
+                            ${isDarkMode ? 'border-white' : 'border-black'}
+                            `}
+                        >
                             {number}
                         </Text>
                     </Pressable>
@@ -86,44 +86,14 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
             </View>
             {
                 randomNumbers?.length !== 0 &&
-                <Pressable onPress={() => roll()} style={[generateNoSreen.rollCont]}>
-                    <Text style={generateNoSreen.rollBtn}>Roll</Text>
+                <Pressable
+                    onPress={() => roll()}
+                    className="justify-center content-center px-5">
+                    <Text className="text-center bg-blue-700 p-3 m-3 rounded-xl text-slate-900 dark:text-white text-base font-medium tracking-tight">
+                        Roll Box
+                    </Text>
                 </Pressable>
             }
-        </View>
+        </ScrollView>
     );
 }
-
-const generateNoSreen = StyleSheet.create({
-    boxTxt: {
-        borderWidth: 1,
-        borderRadius: 10,
-        padding: 10,
-        width: '100%',
-        textAlign: 'center',
-    },
-    boxCont: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        padding: 10, margin: 10,
-        flexWrap: 'wrap',
-        gap: 10,
-        alignContent: 'center',
-    },
-    boxInCont: {
-        width: 50, justifyContent: 'center', alignContent: 'center', flexDirection: 'row'
-    },
-    generateBtn: {
-        color: 'white', padding: 10, borderRadius: 10, fontSize: 18
-    },
-    rollBtn: {
-        backgroundColor: 'blue', color: 'white', padding: 10, borderRadius: 10
-    },
-    rollCont: {
-        justifyContent: 'center',
-        alignContent: 'center',
-        flexDirection: 'row',
-        backgroundColor: 'blue',
-        borderRadius: 15
-    }
-})

@@ -1,18 +1,14 @@
 import React from 'react';
 import {
   SafeAreaView,
-  StatusBar,
+  StatusBar, View,
   useColorScheme,
-  TextInput, Text,
-  View, ScrollView,
-  StyleSheet,
 } from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import SplashScreen from 'react-native-splash-screen';
-import { MainScreen } from './src/screen/main';
 import NavigateComponent from './src/navigation/navigator.tsx';
-import { NavigationContainer,createNavigationContainerRef, } from '@react-navigation/native';
+import { NavigationContainer, createNavigationContainerRef, } from '@react-navigation/native';
+import { PaperProvider } from 'react-native-paper';
 
 export const appNavRef = createNavigationContainerRef();
 
@@ -21,25 +17,17 @@ const App = () => {
   setTimeout(() => SplashScreen.hide(), 1000);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: isDarkMode ? Colors.black : Colors.white, }}>
+    <SafeAreaView className='flex-1 bg-white dark:bg-slate-800'>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={isDarkMode ? Colors.black : Colors.white}
       />
-      <NavigationContainer ref={appNavRef}>
-        <NavigateComponent />
-      </NavigationContainer>
+      <PaperProvider>
+        <NavigationContainer ref={appNavRef}>
+          <NavigateComponent />
+        </NavigationContainer>
+        </PaperProvider>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    padding: 10,
-    borderRadius: 5,
-    flex: 1
-  }
-});
 
 export default App;

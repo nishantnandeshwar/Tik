@@ -9,7 +9,10 @@ export const GameScreen = (props: any) => {
         if (status === true) {
             try {
                 setWin(true)
-                setTimeout(() => setWin(false), 2000)
+                setTimeout(() => {
+                    setWin(false)
+                    props.navigation.navigate('StartGame')
+                }, 2000)
             } catch (error) {
                 console.error("Error playing confetti animation:", error);
             }
@@ -18,9 +21,9 @@ export const GameScreen = (props: any) => {
 
     return (
         <>
-            <View>
-                <Text>
-                    {props.route.params.data.noOfBoxValue}
+            <View className='flex-1 items-center bg-white dark:bg-slate-800 '>
+                <Text className="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">
+                    Total Box: {props.route.params.data.noOfBoxValue}
                 </Text>
                 <GenerateRandomNo
                     min={1}
@@ -33,13 +36,26 @@ export const GameScreen = (props: any) => {
                 win &&
                 <LottieView
                     autoPlay
-                    // style={[generateNoSreen.lottieStyle]}
+                    style={[generateNoSreen.lottieStyle]}
                     source={require('../assets/celebrate.json')}
                     duration={5000}
                 />
             }
         </>
+
     )
 }
-
+const generateNoSreen = StyleSheet.create({
+lottieStyle: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1000,
+    pointerEvents: 'none',
+},
+})
 
