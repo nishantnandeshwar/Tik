@@ -31,49 +31,8 @@ export const MainScreen = (props: any) => {
                 }
             })}}
              >
-                Press me
+                Start playing
             </Button>
-
-            {/* <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={[generateNoSreen.textStyl, { color: isDarkMode ? 'white' : 'black' }]}>
-                    Please enter number
-                </Text>
-                <TextInput
-                    style={[generateNoSreen.boxStyl, { borderColor: isDarkMode ? 'white' : 'black' }]}
-                    onChangeText={setNoOfBox}
-                    value={noOfBox}
-                    keyboardType='numeric'
-                    inputMode='numeric'
-                    placeholder={'ex.10'}
-                    placeholderTextColor={isDarkMode ? 'white' : 'black'}
-                />
-            </View> */}
-
-            {/* <Button
-                title="Start Game"
-                onPress={() => { props.navigation.navigate('GameScreen',{
-                    data:{
-                        noOfBoxValue: noOfBox,
-                    }
-                })}}
-            /> */}
         </View>
     );
 }
-
-// const generateNoSreen = StyleSheet.create({
-//     boxStyl: {
-//         padding: 10,
-//         borderWidth: 2,
-//         margin: 10,
-//         marginTop: 10,
-//         borderRadius: 10,
-//         width: 100,
-//         textAlign: 'center'
-//     },
-//     textStyl: {
-//         fontSize: 20,
-//         fontWeight: 'bold',
-//         color: 'black'
-//     }
-// });

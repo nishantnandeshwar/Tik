@@ -14,7 +14,7 @@ export const appNavRef = createNavigationContainerRef();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  setTimeout(() => SplashScreen.hide(), 1000);
+  setTimeout(() => SplashScreen.hide(), 1500);
 
   return (
     <SafeAreaView className='flex-1 bg-white dark:bg-slate-800'>

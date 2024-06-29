@@ -1,7 +1,6 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MainScreen } from '../screen/main';
 import { GameScreen } from '../screen/gameScreen';
