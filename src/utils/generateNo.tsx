@@ -88,8 +88,10 @@ export const GenerateRandomNo: React.FC<RandomNumberGeneratorProps> = ({ max, mi
                 randomNumbers?.length !== 0 &&
                 <Pressable
                     onPress={() => roll()}
-                    className="justify-center content-center px-5">
-                    <Text className="text-center bg-blue-700 p-3 m-3 rounded-xl text-slate-900 dark:text-white text-base font-medium tracking-tight">
+                    className="justify-center content-center px-5"
+                    >
+                    <Text className="text-center p-3 m-3 rounded-xl text-white  dark:text-slate-900 text-base font-medium tracking-tight"
+                    style={{backgroundColor:'#552C22'}}>
                         Roll Box
                     </Text>
                 </Pressable>
