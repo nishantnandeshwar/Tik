@@ -45,7 +45,7 @@ export const GameScreen = (props: any) => {
                         BackHandler()
                     }}>
                         <Text className="text-white  dark:text-slate-900 font-medium tracking-tight" style={{ padding: 10 }}>
-                            I can't play
+                            Want to play from start?
                         </Text>
                     </TouchableOpacity>
                 </View>
